@@ -13,7 +13,7 @@ function App(props: { onShow: (show: boolean) => void }) {
           <Home />
         </Route>
         <Route path={"/menu1"}>
-          <div className="content">This is Menu1s</div>
+          <div className="content">This is Menu1</div>
         </Route>
       </Switch>
     </BrowserRouter>
