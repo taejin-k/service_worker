@@ -7,10 +7,10 @@ const App = () => {
       <Navbar />
       <Switch>
         <Route path={"/"} exact>
-          Home version.10
+          Home version.11
         </Route>
         <Route path={"/about"} exact>
-          About version.10
+          About version.11
         </Route>
       </Switch>
     </BrowserRouter>
