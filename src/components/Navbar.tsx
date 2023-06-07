@@ -8,7 +8,11 @@ export const Navbar = () => {
   useEffect(() => {
     navigator.serviceWorker
       .getRegistrations()
-      .then((responses) => responses.forEach((response) => response.update()));
+      .then((responses) =>
+        responses.forEach((response) =>
+          response.update().then((res) => console.log(res))
+        )
+      );
   }, [location.pathname]);
 
   return (
