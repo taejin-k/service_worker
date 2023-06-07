@@ -50,6 +50,7 @@ function registerValidSW(swUrl: string, config?: Config) {
     .register(swUrl)
     .then((registration) => {
       navigator.serviceWorker.addEventListener("controllerchange", () => {
+        alert("새로운 버전이 배포되었습니다.");
         window.location.reload();
       });
 

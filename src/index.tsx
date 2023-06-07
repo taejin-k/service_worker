@@ -8,7 +8,6 @@ const root = ReactDOM.createRoot(
 );
 
 const skipWaiting = () => {
-  alert("새로운 버전이 배포되었습니다.");
   navigator.serviceWorker.getRegistrations().then((responses) =>
     responses.forEach((response) => {
       response.waiting?.postMessage({ type: "SKIP_WAITING" });
