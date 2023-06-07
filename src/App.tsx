@@ -1,20 +1,20 @@
 import { BrowserRouter, Route, Switch } from "react-router-dom";
 import { Navbar } from "./components/Navbar";
 
-function App() {
+const App = () => {
   return (
     <BrowserRouter>
       <Navbar />
       <Switch>
         <Route path={"/"} exact>
-          Home version.9
+          Home version.10
         </Route>
         <Route path={"/about"} exact>
-          About version.9
+          About version.10
         </Route>
       </Switch>
     </BrowserRouter>
   );
-}
+};
 
 export default App;
