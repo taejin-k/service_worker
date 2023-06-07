@@ -1,4 +1,3 @@
-/* eslint-disable react-hooks/exhaustive-deps */
 import { useEffect } from "react";
 import { Link, useHistory } from "react-router-dom";
 
@@ -6,34 +5,34 @@ export const Navbar = () => {
   const history = useHistory();
 
   const applyUpdate = () => {
-    navigator.serviceWorker.getRegistrations().then((responses) =>
-      responses.forEach((response) => {
-        response.waiting?.postMessage({ type: "SKIP_WAITING" });
+    navigator.serviceWorker.getRegistrations().then((regs) =>
+      regs.forEach((reg) => {
+        reg.waiting?.postMessage({ type: "SKIP_WAITING" });
       })
     );
   };
 
-  const checkUpdate = history.listen(() => {
-    if (!navigator.serviceWorker) return false;
-
-    navigator.serviceWorker.getRegistrations().then((responses) =>
-      responses.forEach((responses) => {
-        responses.update().then(() => {
-          if (responses.waiting) {
-            alert("버전이 업데이트 되었습니다.");
-            applyUpdate();
-          }
-        });
-      })
-    );
-  });
-
   useEffect(() => {
     if (!history) return;
+    const unListen = history.listen((location, action) => {
+      if (!navigator.serviceWorker) {
+        return;
+      }
 
-    checkUpdate();
+      navigator.serviceWorker.getRegistrations().then((regs) =>
+        regs.forEach((reg) => {
+          reg.update().then(() => {
+            if (reg.waiting) {
+              if (window.confirm("새로운 버전이 배포되었습니다.")) {
+                applyUpdate();
+              }
+            }
+          });
+        })
+      );
+    });
     return () => {
-      checkUpdate();
+      unListen();
     };
   }, [history]);
 
