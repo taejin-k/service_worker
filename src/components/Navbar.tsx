@@ -14,22 +14,17 @@ export const Navbar = () => {
   };
 
   useEffect(() => {
-    const unListen = history.listen((location, action) => {
-      navigator.serviceWorker.getRegistrations().then((responses) =>
-        responses.forEach((response) => {
-          response.update().then(() => {
-            if (response.waiting) {
-              if (window.confirm("새로운 버전이 배포되었습니다.")) {
-                applyUpdate();
-              }
+    navigator.serviceWorker.getRegistrations().then((responses) =>
+      responses.forEach((response) => {
+        response.update().then(() => {
+          if (response.waiting) {
+            if (window.confirm("새로운 버전이 배포되었습니다.")) {
+              applyUpdate();
             }
-          });
-        })
-      );
-    });
-    return () => {
-      unListen();
-    };
+          }
+        });
+      })
+    );
   }, [history.location.pathname]);
 
   return (
