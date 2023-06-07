@@ -1,3 +1,4 @@
+/* eslint-disable react-hooks/exhaustive-deps */
 import { useEffect } from "react";
 import { Link, useHistory } from "react-router-dom";
 
@@ -13,12 +14,7 @@ export const Navbar = () => {
   };
 
   useEffect(() => {
-    if (!history) return;
     const unListen = history.listen((location, action) => {
-      if (!navigator.serviceWorker) {
-        return;
-      }
-
       navigator.serviceWorker.getRegistrations().then((responses) =>
         responses.forEach((response) => {
           response.update().then(() => {
@@ -34,7 +30,7 @@ export const Navbar = () => {
     return () => {
       unListen();
     };
-  }, [history]);
+  }, [history.location.pathname]);
 
   return (
     <nav className="navbar">
