@@ -1,9 +1,9 @@
 /* eslint-disable react-hooks/exhaustive-deps */
 import { useEffect } from "react";
-import { Link, useHistory } from "react-router-dom";
+import { Link, useLocation } from "react-router-dom";
 
 export const Navbar = () => {
-  const history = useHistory();
+  const location = useLocation();
 
   const applyUpdate = () => {
     navigator.serviceWorker.getRegistrations().then((responses) =>
@@ -14,7 +14,6 @@ export const Navbar = () => {
   };
 
   useEffect(() => {
-    console.log(history.location.pathname);
     navigator.serviceWorker.getRegistrations().then((responses) =>
       responses.forEach((response) => {
         response.update().then(() => {
@@ -26,7 +25,7 @@ export const Navbar = () => {
         });
       })
     );
-  }, [history.location.pathname]);
+  }, [location.pathname]);
 
   return (
     <nav className="navbar">
