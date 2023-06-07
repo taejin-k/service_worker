@@ -50,12 +50,7 @@ function registerValidSW(swUrl: string, config?: Config) {
     .register(swUrl)
     .then((registration) => {
       navigator.serviceWorker.addEventListener("controllerchange", () => {
-        alert("새로운 버전이 배포되었습니다.");
-        navigator.serviceWorker.getRegistrations().then((responses) =>
-          responses.forEach((response) => {
-            response.waiting?.postMessage({ type: "SKIP_WAITING" });
-          })
-        );
+        window.location.reload();
       });
 
       registration.onupdatefound = () => {
@@ -66,6 +61,13 @@ function registerValidSW(swUrl: string, config?: Config) {
         installingWorker.onstatechange = () => {
           if (installingWorker.state === "installed") {
             if (navigator.serviceWorker.controller) {
+              alert("새로운 버전이 배포되었습니다.");
+              navigator.serviceWorker.getRegistrations().then((responses) =>
+                responses.forEach((response) => {
+                  response.waiting?.postMessage({ type: "SKIP_WAITING" });
+                })
+              );
+
               // Execute callback
               if (config && config.onUpdate) {
                 config.onUpdate(registration);
