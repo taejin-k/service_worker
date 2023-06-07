@@ -1,6 +1,11 @@
-import { BrowserRouter, Route, Switch, useLocation } from "react-router-dom";
-import { Navbar } from "./components/Navbar";
 import { useEffect } from "react";
+import {
+  BrowserRouter,
+  Link,
+  Route,
+  Switch,
+  useLocation,
+} from "react-router-dom";
 
 const App = () => {
   const location = useLocation();
@@ -13,13 +18,17 @@ const App = () => {
 
   return (
     <BrowserRouter>
-      <Navbar />
+      <nav className="navbar">
+        <Link to="/">Home</Link>
+        <span> |</span>
+        <Link to="/about">About</Link>
+      </nav>
       <Switch>
         <Route path={"/"} exact>
-          Home version.74
+          Home version.75
         </Route>
         <Route path={"/about"} exact>
-          About version.74
+          About version.75
         </Route>
       </Switch>
     </BrowserRouter>
