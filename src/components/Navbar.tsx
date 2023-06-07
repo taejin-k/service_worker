@@ -6,9 +6,7 @@ export const Navbar = () => {
   const location = useLocation();
 
   useEffect(() => {
-    navigator.serviceWorker
-      .getRegistrations()
-      .then((responses) => responses.forEach((response) => response.update()));
+    navigator.serviceWorker.getRegistrations();
   }, [location.pathname]);
 
   return (
