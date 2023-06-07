@@ -14,6 +14,7 @@ export const Navbar = () => {
   };
 
   useEffect(() => {
+    console.log(history.location.pathname);
     navigator.serviceWorker.getRegistrations().then((responses) =>
       responses.forEach((response) => {
         response.update().then(() => {
