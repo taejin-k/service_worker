@@ -5,9 +5,9 @@ export const Navbar = () => {
   const history = useHistory();
 
   const applyUpdate = () => {
-    navigator.serviceWorker.getRegistrations().then((regs) =>
-      regs.forEach((reg) => {
-        reg.waiting?.postMessage({ type: "SKIP_WAITING" });
+    navigator.serviceWorker.getRegistrations().then((responses) =>
+      responses.forEach((response) => {
+        response.waiting?.postMessage({ type: "SKIP_WAITING" });
       })
     );
   };
@@ -19,10 +19,10 @@ export const Navbar = () => {
         return;
       }
 
-      navigator.serviceWorker.getRegistrations().then((regs) =>
-        regs.forEach((reg) => {
-          reg.update().then(() => {
-            if (reg.waiting) {
+      navigator.serviceWorker.getRegistrations().then((responses) =>
+        responses.forEach((response) => {
+          response.update().then(() => {
+            if (response.waiting) {
               if (window.confirm("새로운 버전이 배포되었습니다.")) {
                 applyUpdate();
               }
