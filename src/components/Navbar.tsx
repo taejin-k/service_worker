@@ -6,13 +6,14 @@ export const Navbar = () => {
   const location = useLocation();
 
   useEffect(() => {
-    navigator.serviceWorker
-      .getRegistrations()
-      .then((responses) =>
-        responses.forEach((response) =>
-          response.update().then((res) => console.log(res))
-        )
-      );
+    navigator.serviceWorker.getRegistrations().then((responses) =>
+      responses.forEach((response) =>
+        response.update().then((res: any) => {
+          console.log(res.active);
+          console.log(res.waiting);
+        })
+      )
+    );
   }, [location.pathname]);
 
   return (
