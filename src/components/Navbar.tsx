@@ -1,18 +1,11 @@
 /* eslint-disable react-hooks/exhaustive-deps */
-import { useEffect } from "react";
-import { Link, useLocation } from "react-router-dom";
+import { Link } from "react-router-dom";
 
 export const Navbar = () => {
-  const location = useLocation();
-
-  useEffect(() => {
-    navigator.serviceWorker.getRegistrations();
-  }, [location.pathname]);
-
   return (
     <nav className="navbar">
       <Link to="/">Home</Link>
-      <span> | </span>
+      <span> |</span>
       <Link to="/about">About</Link>
     </nav>
   );
