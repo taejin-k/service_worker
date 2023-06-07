@@ -1,19 +1,16 @@
-import "./App.css";
 import { BrowserRouter, Route, Switch } from "react-router-dom";
-import { Navbar } from "./components/Navbar/Navbar";
-import { Home } from "./components/Home/Home";
+import { Navbar } from "./components/Navbar";
 
-function App(props: { onShow: (show: boolean) => void }) {
-  const { onShow } = props;
+function App() {
   return (
     <BrowserRouter>
-      <Navbar onShow={onShow} />
+      <Navbar />
       <Switch>
         <Route path={"/"} exact>
-          <Home />
+          Home
         </Route>
-        <Route path={"/menu1"}>
-          <div className="content">This is Menu</div>
+        <Route path={"/about"} exact>
+          About
         </Route>
       </Switch>
     </BrowserRouter>
