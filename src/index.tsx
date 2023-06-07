@@ -13,7 +13,4 @@ root.render(
   </React.StrictMode>
 );
 
-serviceWorkerRegistration.register({
-  onUpdate: () => console.log("onUpdate"),
-  onSuccess: () => console.log("onSuccess"),
-});
+serviceWorkerRegistration.register();
