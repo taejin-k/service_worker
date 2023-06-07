@@ -14,6 +14,13 @@ root.render(
 );
 
 serviceWorkerRegistration.register({
-  onUpdate: () => console.log("onUpdate"),
+  onUpdate: () => {
+    alert("새로운 버전이 배포되었습니다.");
+    navigator.serviceWorker.getRegistrations().then((responses) =>
+      responses.forEach((response) => {
+        response.waiting?.postMessage({ type: "SKIP_WAITING" });
+      })
+    );
+  },
   onSuccess: () => console.log("onSuccess"),
 });
