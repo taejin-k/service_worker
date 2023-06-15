@@ -30,4 +30,3 @@ jobs:
           key: ${{ secrets.PUBLIC_KEY }}
           source: .
           target: /home/ubuntu/service_worker
-          args: -r
